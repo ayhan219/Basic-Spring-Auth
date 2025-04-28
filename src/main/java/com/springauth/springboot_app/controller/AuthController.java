@@ -65,7 +65,8 @@ public class AuthController {
         System.out.println("request user" + request.getPassword());
         for (User specificUser : users) {
             if (specificUser.getUsername().equals(request.getUsername())) {
-                specificUser.setPassword(request.getPassword());
+                String hashedPassword = passwordEncoder.encode(request.getPassword());
+                specificUser.setPassword(hashedPassword);
                 Map<String, String> response = new HashMap<>();
                 response.put("message", "Password changed successfully");
                 System.out.println("after changed password" + users);
