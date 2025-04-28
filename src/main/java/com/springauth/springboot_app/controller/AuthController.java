@@ -49,7 +49,7 @@ public class AuthController {
 
         for (User registeredUser : users) {
             if (registeredUser.getUsername().equals(user.getUsername())
-                    && registeredUser.getPassword().equals(user.getPassword())) {
+                    && passwordEncoder.matches(user.getPassword(),registeredUser.getPassword())) {
                 Map<String, String> response = new HashMap<>();
                 response.put("message", "successfully logined!");
                 return ResponseEntity.ok(response);
